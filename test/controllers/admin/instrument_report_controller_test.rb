@@ -1,0 +1,39 @@
+require 'test_helper'
+
+class Admin::InstrumentReportsControllerTest < ActionController::TestCase
+  include Devise::Test::ControllerHelpers
+
+  setup do
+    @instrument = create(:instrument)
+    @i_report = create(:instrument_report, instrument: @instrument)
+  end
+
+  test 'unauthorized' do
+    get :index, params: { instrument_id: @instrument.id }
+    assert_response :redirect
+  end
+
+  test 'no role' do
+    sign_in(create(:user))
+    get :index, params: { instrument_id: @instrument.id }
+    assert_response :redirect
+  end
+
+  test 'reports list' do
+    sign_in(create(:user_manager))
+
+    get :index, params: { instrument_id: @instrument.id }
+    assert_response :success
+    assert_includes @response.body, @instrument.name
+    assert_includes @response.body, @i_report.report_date.to_formatted_s(:long)
+  end
+
+  test 'show report for date' do
+    sign_in(create(:user_manager))
+    get :show, params: { instrument_id: @instrument.id, id: @i_report.id }
+
+    assert_response :success
+    assert_includes @response.body, @instrument.name
+    assert_includes @response.body, @i_report.report_date.to_formatted_s(:long)
+  end
+end

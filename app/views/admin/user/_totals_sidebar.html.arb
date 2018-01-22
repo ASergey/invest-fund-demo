@@ -1,0 +1,20 @@
+attributes_table_for operations_user do
+  row(I18n.t('admin.user.first_investment_title')) do |user|
+    operation = user.first_investment
+    I18n.t('admin.user.first_investment', amount: operation.amount, currency_symbol: operation.currency.symbol, date: operation.updated_at) if operation.present?
+  end
+  row(I18n.t('admin.user.total_invested_title')) do |user|
+    ul do
+      user.total_invested.each do |currency, value|
+        li I18n.t('admin.user.total_invested', amount: value, currency_symbol: currency.symbol)
+      end
+    end
+  end
+  row(I18n.t('admin.user.total_paid_out_title')) do |user|
+    ul do
+      user.total_paid_out.each do |currency, value|
+        li I18n.t('admin.user.total_paid_out', amount: value, currency_symbol: currency.symbol)
+      end
+    end
+  end
+end

@@ -1,0 +1,190 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  active_admin:
+    resources:
+      wallet:
+        new_model: 'Add new Fund Wallet'
+  admin:
+    setting:
+      title: 'Settings'
+    fund:
+      menu_title: 'Fund'
+    fund_operations:
+      form_title: 'Fund Operation'
+      investor_form_title: 'Investor Fund Operation'
+      instrument_form_title: 'Instrument Fund Operation'
+      investor_tab_title: 'Investor Operation'
+      instrument_tab_title: 'Instrument Operation'
+      show_title: 'Operation author'
+      operation_author: 'Operation author'
+      operation_created: 'Operation has been successfully added'
+      operation_updated: 'Operation has been successfully updated'
+      view: View
+      edit: Edit
+    fund_balance:
+      currency: 'Currency'
+      amount: 'Amount'
+      updated: 'Updated At'
+      sidebar_text: 'Fund Balance shows available cash in fund wallets not invested to any instrument'
+      notes: 'Notes'
+      total_capitalization: 'Current fund capitalization'
+    fund_report:
+      total_invested: 'Total invested'
+    report:
+      investor: 'Investor'
+      amount: 'Total Invested'
+      daily_revenue: 'Daily Revenue'
+      capitalization: 'Capitalization'
+      daily_profit: 'Daily Profit'
+      monthly_dividends: 'Dividends'
+    fund_state_title: 'Fund Balance (Cash)'
+    user:
+      first_investment_title: "At first invested"
+      first_investment: "%{amount} %{currency_symbol} at %{date}"
+      total_invested_title: 'Total invested'
+      total_invested: "%{amount} %{currency_symbol}"
+      total_paid_out_title: 'Total paid out'
+      total_paid_out: "%{amount} %{currency_symbol}"
+      operations: 'Operations'
+      named_operations: "%{investor_name} operations"
+      add_operation: 'Add operation'
+      reinvest_label: 'Reinvest'
+      general_partner: 'General Partner'
+      limited_partner: 'Limited Partner'
+      kyc: 'KYC documents'
+      wallets: 'Wallets'
+      role: 'Role'
+      must_be_investor: 'User must be investor with wallets'
+      dailay_report: 'Daily report'
+      monthly_report: 'Monthly report'
+    instrument:
+      menu_title: 'Instruments'
+      groups: 
+        title: 'Group Details'
+        report_title: 'Daily Reports'
+        amount_title: 'Group Amount'
+      balance:
+        title: 'Balance'
+        links: 'Links'
+        form_title: '%{instrument_name} balance'
+        amount: 'Balance Amount'
+        account_balance: 'Account Balance Amount'
+        bixin_balance: 'Bixin Balance Amount'
+        hashnest_balance: 'Hashnest Balance Amount'
+        total_balance: 'Total balance'
+        add_hash_balance: 'Add Hashes balance'
+        remove_hash_balance: 'Remove Hashes Balance'
+        hash_balance: 'Account Hashes Balance'
+        hash_code: 'Hash code: '
+        hash_amount: 'Hash amount: '
+        hash_rate: 'Hash rate: '
+      report:
+        title: 'Report'
+      operations: 'Operations'
+    wallet:
+      form_title: 'Wallet'
+      page_title: 'Fund Wallets'
+      currency_id_required: 'currency_id param required'
+    exchange:
+      menu_title: 'Exchange'
+      rate_not_found: 'Could not find exchange rate'
+      get_rate_params_error: 'Please, provide currency_id and to_currency_id params'
+      operation_rate_placeholder: 'Please, select exchange currency from and to'
+      operation_result_amount_placeholder: 'Please, fill in amount to exchange'
+  enumerize:
+    fund_operation:
+      operation_type:
+        investment: 'Investment'
+        payout: 'Payout'
+        interest_fee: 'Carried Interest Fee'
+        management_fee: 'Management Fee'
+        exchange: 'Exchange'
+      status:
+        done: 'Done'
+        pending: 'Pending'
+        canceled: 'Canceled'
+  validations:
+    fees_investor_required: 'Investor required for fees calculation'
+    operation_subject_required: 'Investor or Instrument is required for this operation type'
+    investor_role_required: 'User must be Investor'
+    operation_subject_error: 'Only an Instrument or an Investor can be specified at the same time'
+    user_unique_wallet: 'This wallet name already exists for this investor'
+    operation_wallet_required: 'Investor wallet required'
+    operation_investor_wallet_required: "Please, add wallets to investor's profile"
+    operation_kyc_required: 'Please, define investor kyc documents before creating operation with bank resource'
+    operation_must_be_undone: 'Operation must be undone before making any changes'
+    operation:
+      insufficient_funds: "Fund balance has less then %{amount} %{currency}"
+      instrument_insufficient_funds: "Instrument %{instrument} balance has less then %{amount} %{currency}"
+      wallet_wrong_currency: "Wallet's currency %{wallet_currency} differs from selected operation currency %{currency}"
+      wrong_investor_wallet: 'Investor does not own provided wallet'
+    fund_balance:
+      not_found: "Fund %{currency} balance has not been created yet"
+    instrument:
+      market_code_unique: 'Market code already exists'
+  api:
+    auth_error: 'Unauthorized'
+    auth_bearer_required: 'Please, provide HTTP_AUTHORIZATION: Bearer <token> in request header'
+    docs:
+      title: 'Invest Admin Panel API'
+      desc: 'API methods to get instruments and update instruments balances'
+    currency:
+      listing: 'Returns list of all currencies'
+      get: 'Returns currency by id'
+      id_desc: 'ID of the currency'
+    instrument:
+      listing: 'Returns list of all instruments'
+      get: 'Returns instrument by id'
+      id_desc: 'ID of the instrument'
+      balance:
+        listing: 'Returns list of all instrument balances'
+        get: 'Returns instrument balance by id'
+        id_desc: 'ID of the instrument balance'
+        update: 'Update instrument balance'
+        validation_fail: 'Instrument balance validation failed'
+        not_found: 'No balance with provided id has been found.'
+      hash_balance:
+        listing: 'Returns list of all instrument balance hashes'
+        get: 'Returns instrument balance hashes by id'
+        id_desc: 'ID of the instrument hash balance'
+  report:
+    exchange_rate_error: "Could not find any exchange rates data for %{currency} currency"
+    divident_payout_note: "Divident payout according to #%{report_id} investor's monthly report"
+    payout_reinvest_note: "Reinvestment according to #%{report_id} investor's monthly report."
+    invest_reinvest_note: "Reinvestment according to #%{report_id} investor's monthly report."
+    monthly_insufficient_data_error: "Not enough data to build monthly report for investor %{investor_id}"
+    invalid_parse_date_arg: "Invalid date argument was present: %{argument}"
+  settings:
+    attributes:
+      management_fee: 'Management Fee'
+      carried_interest_fee: 'Carried Interest Fee'

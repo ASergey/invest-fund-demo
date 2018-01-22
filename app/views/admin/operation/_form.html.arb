@@ -1,0 +1,22 @@
+f.inputs title: I18n.t('admin.fund_operations.investor_form_title') do
+  f.semantic_errors
+  f.input :investor, as: :select2, collection: User.investors_selector, input_html: { disabled: f.object.investor_id_was.present? || params[:user_id].present? }
+  f.input :instrument, as: :select2, collection: Instrument.select(:id, :name), input_html: { disabled: f.object.instrument_id_was.present? || params[:instrument_id].present? }
+
+  if f.object.new_record? || f.object.investor.present?
+    f.input :payment_resource_type, as: :radio, collection: [FundOperation::RESOURCE_TYPE_WALLET, FundOperation::RESOURCE_TYPE_BANK_ACCOUNT], input_html: { disabled: f.object.status_was.done? }
+    f.input :wallet, as: :select2, collection: (f.object.investor.present? ? f.object.investor.investor_wallets : []), input_html: { disabled: f.object.status_was.done? }
+  end
+
+  f.input :currency, as: :select2, collection: Currency.select_options, input_html: { disabled: f.object.status_was.done? }
+  f.input :amount, input_html: { disabled: f.object.status_was.done?, value: number_format(f.object.amount) }
+  f.input :operation_type, as: :select, include_blank: false, collection: FundOperation.operation_types, input_html: { disabled: f.object.status_was.done? }
+
+  f.input :fund_wallet_from, as: :select2, collection: Wallet.fund_wallets_options, input_html: { disabled: f.object.status_was.done? }
+  f.input :fund_wallet_to, as: :select2, collection: Wallet.fund_wallets_options, input_html: { disabled: f.object.status_was.done? }
+
+  f.input :status, as: :select, include_blank: false, collection: FundOperation.operation_statuses, input_html: { disabled: f.object.status_was.done? && cannot?(:approve_operation, f.object) }
+  f.input :operation_date, as: :datepicker, input_html: { disabled: f.object.status_was.done? }, datepicker_options: { maxDate: Date.current }
+  f.input :notes, as: :text
+end
+f.actions

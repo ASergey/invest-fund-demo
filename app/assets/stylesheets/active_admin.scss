@@ -1,0 +1,78 @@
+// SASS variable overrides must be declared before loading up Active Admin's styles.
+//
+// To view the variables that Active Admin provides, take a look at
+// `app/assets/stylesheets/active_admin/mixins/_variables.scss` in the
+// Active Admin source.
+//
+// For example, to change the sidebar width:
+// $sidebar-width: 242px;
+
+// Active Admin's got SASS!
+@import "active_admin/mixins";
+@import "active_admin/base";
+@import "active_admin/select2/base";
+
+// Overriding any non-variable SASS must be done after the fact.
+// For example, to change the default status-tag color:
+//
+//   .status_tag { background: #6090DB; }
+
+$pending-color: #ff9900;
+$canceled-color: #808080;
+$done-color: #08a510;
+$investment-color: #339bcb;
+$payout-color: #3a3a3a;
+$interest-fee-color: #cf215b;
+$management-fee-color: #669f27;
+$exchange-color: #eb5d4c;
+
+span.status_tag {
+  &.pending { background-color: $pending-color; }
+  &.canceled { background-color: $canceled-color; }
+  &.done { background-color: $done-color; }
+  &.investment { background-color: $investment-color; }
+  &.payout { background-color: $payout-color; }
+  &.interest-fee { background-color: $interest-fee-color; }
+  &.management-fee { background-color: $management-fee-color; }
+  &.exchange { background-color: $exchange-color; }
+}
+
+body.logged_out {
+  .flash {
+    @include gradient(#f7f1d3, #f5edc5);
+    @include text-shadow(#fafafa);
+    border-bottom: 1px solid #eee098;
+    color: #cb9810;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.0em;
+    padding: 13px 30px 11px;
+    position: relative;
+
+    &.flash_notice {
+      @include gradient(#dce9dd, #ccdfcd);
+      border-bottom: 1px solid #adcbaf;
+      color: #416347;
+    }
+    &.flash_error {
+      @include gradient(#f5e4e4, #f1dcdc);
+      border-bottom: 1px solid #e0c2c0;
+      color: #b33c33;
+    }
+  }
+}
+
+.choice {
+  .field_with_errors {
+    float: left;
+  }
+}
+
+#fund_operation_currency_input .select2-container {
+  max-width: 300px;
+  min-width: 100px;
+}
+
+#fund_operation_instrument_input .select2-container {
+  min-width: 140px; 
+}

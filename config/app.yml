@@ -1,0 +1,13 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  management_fee: 0.0020833333 # 0.025 / 12
+  carried_interest_fee: 0.0020833333
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

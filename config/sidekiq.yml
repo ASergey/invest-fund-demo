@@ -1,0 +1,10 @@
+:concurrency: 10
+:pidfile: tmp/pids/sidekiq.pid
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 20
+:queues:
+  - exchange_rates_queue
+  - balance_report_queue
+  - rollbar
